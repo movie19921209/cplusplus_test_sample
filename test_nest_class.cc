@@ -21,8 +21,11 @@ public:
 
 class Derive::DD : public Derive {
 public:
+	DD(int param){
+		std::cout << "DD create, " << "param = " << param <<std::endl;	
+	}
 	DD(){
-		std::cout << "DD create" << std::endl;	
+		std::cout << "DD create"<<std::endl;	
 	}
 
 	~DD() {
@@ -30,15 +33,34 @@ public:
 
 	}
 
+	int dd_;
+
+};
+
+
+class Another : public Derive::DD {
+public:
+	Another() : Derive::DD(3) {
+		std::cout << "Another create" << std::endl;	
+	}
+
+	~Another() {
+		std::cout << "Another delete" << std::endl;	
+
+	}
 };
 
 int main() {
 	std::cout << "------------" << std::endl;
 
-	Derive::DD *inner = new Derive::DD();
+	Derive::DD *inner = new Derive::DD(99);
 	delete inner;
 
-	std::cout << "------end------" << std::endl;
+	std::cout << "-----8888888-------" << std::endl;
 
+	Another *another = new Another();
+	delete another;
+
+	std::cout << "------end------" << std::endl;
 	return 0;
 }
